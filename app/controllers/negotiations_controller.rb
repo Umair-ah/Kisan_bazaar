@@ -4,10 +4,14 @@ class NegotiationsController < ApplicationController
 
 
   def index
-    user = User.find_by(phone: session[:user_id]) 
-    negotiated_proposal_ids = user.negotiations.pluck(:proposal_id)
+    buyer = User.find_by(phone: session[:user_id]) 
+    negotiated_proposal_ids = buyer.negotiations.pluck(:proposal_id)
 
-    @proposals = Proposal.where.not(id: negotiated_proposal_ids).order(updated_at: :desc)
+
+    @proposals = Proposal.joins(:user)
+                       .where(users: { taluka: buyer.taluka })
+                       .where.not(id: negotiated_proposal_ids)
+                       .order(updated_at: :desc)
     
   end
 

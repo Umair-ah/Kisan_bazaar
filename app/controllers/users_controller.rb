@@ -40,6 +40,17 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: "Successfully Logged Out!"
   end
 
+  def settings
+    @user = User.find_by(phone: session[:user_id])
+  end
+
+  def settings_save
+    @user = User.find_by(phone: session[:user_id])
+    @user.update!(user_params)
+    redirect_to settings_path, notice: "Saved!"
+
+  end
+
 
   private
 
