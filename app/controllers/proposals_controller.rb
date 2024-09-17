@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: %i[ show edit update destroy ]
+  before_action :authenticate_farmer
 
   def index
     @proposals = Proposal.all
@@ -45,5 +46,12 @@ class ProposalsController < ApplicationController
 
     def proposal_params
       params.require(:proposal).permit(:title, :quantity, :unit, :price, :user_id)
+    end
+  
+    def authenticate_farmer
+      current_user = User.find_by(phone: session[:user_id])
+      if current_user.role != "farmer" || !current_user.verified?
+        redirect_to root_path, alert: "you are not authorized."
+      end
     end
 end
