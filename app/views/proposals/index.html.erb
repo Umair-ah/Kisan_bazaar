@@ -1,0 +1,38 @@
+
+<h1 class="text-3xl font-bold text-emerald-600 mb-6 text-center">Proposals</h1>
+
+<div class="text-center my-4">
+  <%= link_to new_proposal_path, class: "inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-full shadow-lg hover:bg-emerald-700 transition duration-200" do %>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2">
+      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+    </svg>
+    New Proposal
+  <% end %>
+</div>
+
+<div id="proposals" class="max-w-4xl mx-auto px-4">
+  <% @proposals.each do |proposal| %>
+    <div class="bg-white border border-emerald-300 rounded-lg shadow-md p-6 mb-4 transition-transform transform hover:scale-105">
+      <p class="text-lg font-semibold text-emerald-600 mb-2">
+        <strong>Title:</strong> <%= proposal.title %>
+      </p>
+
+      <p class="text-sm text-gray-700 mb-1">
+        <strong>Quantity:</strong> <%= proposal.quantity %>
+      </p>
+
+      <p class="text-sm text-gray-700 mb-1">
+        <strong>Unit:</strong> <%= proposal.unit %>
+      </p>
+
+      <p class="text-sm text-gray-700 mb-1">
+        <strong>Price:</strong> <%= proposal.price %>
+      </p>
+
+      <div class="flex justify-end">
+        <%= link_to "Show Negotiations", proposal, class: "text-emerald-600 hover:text-emerald-700 font-medium" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

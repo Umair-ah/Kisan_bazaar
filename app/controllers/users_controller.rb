@@ -14,8 +14,8 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: "Successfully Logged In!"
+      session[:user_id] = @user.phone
+      redirect_to root_path, notice: "Successfully Signed Up!"
     else
       render :signup_page, status: :unprocessable_entity
     end
@@ -23,12 +23,16 @@ class UsersController < ApplicationController
   end
 
 
-  def login_page
-
-  end
+  def login_page; end
 
   def login
+    phone = params[:phone]
+    @user = User.find_by(phone: phone)
 
+    if @user
+      session[:user_id] = @user.phone
+      redirect_to root_path, notice: "Successfully Logged In!"
+    end
   end
 
   def logout

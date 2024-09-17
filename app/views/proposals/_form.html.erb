@@ -1,0 +1,41 @@
+<%= form_with(model: proposal, local: true, class: "mt-10 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md") do |form| %>
+
+  <% if proposal.errors.any? %>
+    <div class="mb-6 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+      <p class="font-bold">There were some problems with your submission:</p>
+      <ul class="list-disc list-inside">
+        <% proposal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :title, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :title, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :quantity, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :quantity, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :unit, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= form.collection_select :unit, [['Kilograms (kg)', 'Kilograms (kg)'], ['Quintal', 'Quintal'], ['Tonnes (Metric Ton)', 'Tonnes (Metric Ton)'], ['Maund', 'Maund'], ['Liters', 'Liters']], :last, :first, { include_blank: 'Select Unit' }, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :price, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :price, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <% current_user = User.find_by(phone: session[:user_id]) %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+
+  <div class="mt-6">
+    <%= form.submit 'Save Proposal', class: "w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+<% end %>

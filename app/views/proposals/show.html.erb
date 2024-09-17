@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<p>
+    <strong>Title:</strong>
+    <%= @proposal.title %>
+  </p>
+
+  <p>
+    <strong>Quantity:</strong>
+    <%= @proposal.quantity %>
+  </p>
+
+  <p>
+    <strong>Unit:</strong>
+    <%= @proposal.unit %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @proposal.price %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @proposal.user_id %>
+  </p>
+
+
+<div>
+  <%= link_to "Edit this proposal", edit_proposal_path(@proposal) %> |
+  <%= link_to "Back to proposals", proposals_path %>
+
+  <%= button_to "Destroy this proposal", @proposal, method: :delete %>
+</div>
