@@ -51,6 +51,13 @@ class UsersController < ApplicationController
 
   end
 
+  def talukas
+    india_data = YAML.load_file(Rails.root.join('config', 'India.yml'))
+    district = params[:id]
+    talukas = india_data.select { |_, data| data[:district] == district }.map { |_, data| data[:city] }.uniq
+    render json: talukas
+  end
+
 
   private
 

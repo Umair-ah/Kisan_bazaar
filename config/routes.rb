@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "/settings", to: "users#settings"
   post "/settings", to: "users#settings_save"
 
+  get 'districts/:id/talukas', to: 'users#talukas'
+
 
 
   root "pages#index"
