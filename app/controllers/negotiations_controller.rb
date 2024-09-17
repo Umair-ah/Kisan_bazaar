@@ -1,5 +1,7 @@
 class NegotiationsController < ApplicationController
   before_action :set_negotiation, only: %i[ show edit update destroy ]
+  before_action :authenticate_buyer
+
 
   def index
     user = User.find_by(phone: session[:user_id]) 
@@ -72,5 +74,12 @@ class NegotiationsController < ApplicationController
 
     def negotiation_params
       params.require(:negotiation).permit(:user_id, :proposal_id, :price)
+    end
+
+    def authenticate_buyer
+      current_user = User.find_by(phone: session[:user_id])
+      if current_user.role != "buyer"
+        redirect_to root_path, alert: "you are not authorized."
+      end
     end
 end
