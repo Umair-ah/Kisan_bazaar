@@ -1,0 +1,47 @@
+<nav class="bg-white border-b-2 border-emerald-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="text-2xl font-bold text-emerald-600">Farming System</a>
+      </div>
+      <!-- Menu for larger screens -->
+      <div class="hidden md:flex space-x-4 items-center">
+        <a href="#" class="text-emerald-600 hover:text-emerald-700 font-medium">Home</a>
+        <a href="#" class="text-emerald-600 hover:text-emerald-700 font-medium">About</a>
+        <a href="#" class="text-emerald-600 hover:text-emerald-700 font-medium">Services</a>
+        <a href="#" class="text-emerald-600 hover:text-emerald-700 font-medium">Contact</a>
+        <a href="/login" class="px-4 py-2 border border-emerald-600 text-emerald-600 rounded hover:bg-emerald-600 hover:text-white transition">Login</a>
+        <a href="/signup" class="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition">Sign Up</a>
+      </div>
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-emerald-600 hover:text-emerald-700 focus:outline-none">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-600 hover:bg-emerald-100">Home</a>
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-600 hover:bg-emerald-100">About</a>
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-600 hover:bg-emerald-100">Services</a>
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-emerald-600 hover:bg-emerald-100">Contact</a>
+      <a href="/login" class="block w-full text-center px-4 py-2 border border-emerald-600 text-emerald-600 rounded hover:bg-emerald-600 hover:text-white transition">Login</a>
+      <a href="/signup" class="block w-full text-center px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition">Sign Up</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // JavaScript to toggle the mobile menu
+  document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+</script>

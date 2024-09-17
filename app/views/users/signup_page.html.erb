@@ -1,18 +1,30 @@
-<%= form_with model: @user, url: signup_path, method: :post, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= form_with model: @user, url: signup_path, method: :post, local: true, class: "mt-10 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md" do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= f.text_field :name, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
 
-  <%= f.label :phone %>
-  <%= f.text_field :phone, data: { action: "input->location#fetchLocation" } %>
+  <div class="mb-4">
+    <%= f.label :phone, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= f.text_field :phone, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
 
-  <%= f.label :role %>
-  <%= f.collection_select :role, [['Farmer', 'farmer'], ['Buyer', 'buyer']], :second, :first, include_blank: 'Select Role' %>
+  <div class="mb-4">
+    <%= f.label :role, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= f.collection_select :role, [['Farmer', 'farmer'], ['Buyer', 'buyer']], :second, :first, { include_blank: 'Select Role' }, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
 
-  <%= f.label :district %>
-  <%= f.select :district, options_for_select(@districts, include_blank: 'Select District') %>
+  <div class="mb-4">
+    <%= f.label :district, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= f.select :district, options_for_select(@districts, include_blank: 'Select District'), {}, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
 
-  <%= f.label :taluka %>
-  <%= f.select :taluka, options_for_select(@talukas, include_blank: 'Select Taluka') %>
+  <div class="mb-4">
+    <%= f.label :taluka, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= f.select :taluka, options_for_select(@talukas, include_blank: 'Select Taluka'), {}, class: "w-full px-4 py-2 border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
 
-  <%= f.submit 'Sign Up' %>
+  <div class="mt-6">
+    <%= f.submit 'Sign Up', class: "w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
 <% end %>
