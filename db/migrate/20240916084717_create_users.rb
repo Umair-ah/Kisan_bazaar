@@ -4,8 +4,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :phone
       t.string :role
-      t.string :pincode
-      t.string :address
+      t.string :district
+      t.string :taluka
+      t.boolean :verified, default: 0
 
       t.timestamps
     end

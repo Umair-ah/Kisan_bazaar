@@ -1,0 +1,18 @@
+<%= form_with model: @user, url: signup_path, method: :post, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :phone %>
+  <%= f.text_field :phone, data: { action: "input->location#fetchLocation" } %>
+
+  <%= f.label :role %>
+  <%= f.collection_select :role, [['Farmer', 'farmer'], ['Buyer', 'buyer']], :second, :first, include_blank: 'Select Role' %>
+
+  <%= f.label :district %>
+  <%= f.select :district, options_for_select(@districts, include_blank: 'Select District') %>
+
+  <%= f.label :taluka %>
+  <%= f.select :taluka, options_for_select(@talukas, include_blank: 'Select Taluka') %>
+
+  <%= f.submit 'Sign Up' %>
+<% end %>
