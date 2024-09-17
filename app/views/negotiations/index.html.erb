@@ -1,0 +1,28 @@
+
+<h1 class="mt-2 text-3xl font-bold text-emerald-600 mb-6 text-center">Products</h1>
+
+<div id="negotiations" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+  <% @proposals.each do |proposal| %>
+    <div class="bg-white border border-emerald-300 rounded-lg shadow-lg p-6 transition-transform transform hover:scale-105 hover:shadow-xl">
+      <div class="mb-4">
+        <h2 class="text-lg font-semibold text-emerald-600">
+          <%= proposal.title %>
+        </h2>
+      </div>
+      
+      <div class="mb-2 text-sm text-gray-700">
+        <%= proposal.quantity %> <%= proposal.unit %>
+      </div>
+
+      <div class="mb-4 text-sm text-gray-700">
+        <strong>Price:</strong> Rs. <%= proposal.price %>/-
+      </div>
+
+      <div class="flex justify-end" id="auction-<%= proposal.id %>">
+        <%= link_to "Auction", new_negotiation_path(proposal_id: proposal.id),data:{controller: "wire"}, class: "text-white px-4 py-2 bg-green-500 hover:bg-green-600 font-medium rounded-lg" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+

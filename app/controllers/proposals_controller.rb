@@ -3,7 +3,8 @@ class ProposalsController < ApplicationController
   before_action :authenticate_farmer
 
   def index
-    @proposals = Proposal.all
+    @user = User.find_by(phone: session[:user_id])
+    @proposals = @user.proposals
   end
 
   def show
@@ -34,10 +35,10 @@ class ProposalsController < ApplicationController
     end
   end
 
-  def destroy
-    @proposal.destroy
-    redirect_to proposals_url, notice: "Proposal was successfully destroyed."
-  end
+  # def destroy
+  #   @proposal.destroy
+  #   redirect_to proposals_url, notice: "Proposal was successfully destroyed."
+  # end
 
   private
     def set_proposal

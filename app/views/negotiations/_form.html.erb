@@ -1,0 +1,32 @@
+<%= form_with(model: negotiation) do |form| %>
+  <% if negotiation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(negotiation.errors.count, "error") %> prohibited this negotiation from being saved:</h2>
+
+      <ul>
+        <% negotiation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <% current_user = User.find_by(phone: session[:user_id]) %>
+    <%= form.hidden_field :user_id, value: current_user.id  %>
+  </div>
+
+  <div>
+    <% current_proposal = Proposal.find(params[:proposal_id]) %>
+    <%= form.hidden_field :proposal_id, value: current_proposal.id  %>
+  </div>
+
+  <div>
+    <%= form.label :price, class: "block text-emerald-700 text-sm font-bold mb-2" %>
+    <%= form.number_field :price, min: current_proposal.price, class: "border border-emerald-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <div>
+    <%= form.submit "Negotiate", class:"mt-2 px-2 py-1 text-white bg-green-500 hover:bg-green-600 rounded-md hover:cursor-pointer" %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<h1 class="mt-2 text-3xl font-bold text-emerald-600 mb-6 text-center">Your Negotiations</h1>
+
+<div id="negotiations" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+  <% @negotiations.each do |ng| %>
+    <div class="bg-white border border-emerald-300 rounded-lg shadow-lg p-6 transition-transform transform hover:scale-105 hover:shadow-xl">
+      <div class="mb-4">
+        <h2 class="text-lg font-semibold text-emerald-600">
+          <%= ng.proposal.title %>
+        </h2>
+      </div>
+      
+      <div class="mb-2 text-sm text-gray-700">
+        <strong>Farmer's Price:</strong> Rs.<%= ng.proposal.price %>/- for <%= ng.proposal.quantity %> <%= ng.proposal.unit %>
+      </div>
+
+      <div class="mb-4 text-sm text-gray-700">
+        <strong>Your Price:</strong> Rs. <%= ng.price %>/-
+      </div>
+
+      <div class="flex justify-end" id="auction-<%= ng.proposal.id %>">
+        <%= link_to "Change Price", new_negotiation_path(proposal_id: ng.proposal.id),data:{controller: "wire"}, class: "text-white px-4 py-2 bg-green-500 hover:bg-green-600 font-medium rounded-lg" %>
+
+      </div>
+    </div>
+  <% end %>
+</div>

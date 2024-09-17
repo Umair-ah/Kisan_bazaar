@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @negotiation %>
+
+<div>
+  <%= link_to "Edit this negotiation", edit_negotiation_path(@negotiation) %> |
+  <%= link_to "Back to negotiations", negotiations_path %>
+
+  <%= button_to "Destroy this negotiation", @negotiation, method: :delete %>
+</div>
